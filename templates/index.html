@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRD Student Photo Merger</title>
+    <style>
+        :root { 
+            --navy: #001f60; 
+            --red: #d31018; 
+            --offwhite: #f8f9fa; 
+        }
+        
+        body { font-family: sans-serif; background: #eaeff2; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* HEADER: Logo left, Title Center */
+        .app-header { 
+            background: var(--offwhite); 
+            padding: 15px 30px; 
+            display: flex; 
+            align-items: center; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-bottom: 4px solid var(--red);
+        }
+        .app-header img { height: 80px; width: auto; }
+        .header-center { flex-grow: 1; text-align: center; }
+        .header-center h1 { margin: 0; font-size: 28px; color: var(--navy); letter-spacing: 1px; }
+        .header-center h2 { margin: 2px 0 0 0; font-size: 16px; color: var(--red); letter-spacing: 2px; }
+
+        /* FOOTER: Unique Gradient Design */
+        .footer {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--navy) 0%, #003399 100%);
+            color: white;
+            text-align: center;
+            font-size: 14px;
+            border-top: 5px solid var(--red);
+            margin-top: auto;
+        }
+        .footer span { color: #f1c40f; font-weight: bold; }
+
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 500px; margin: 40px auto; text-align: center; }
+        .upload-box { border: 2px dashed #cbd5e0; padding: 20px; background-color: #f8fafc; margin-bottom: 20px; }
+        button { background-color: #28a745; color: white; border: none; padding: 12px 25px; font-size: 16px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="app-header">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="GRD Logo" onerror="this.style.display='none'">
+        <div class="header-center">
+            <h1>GURU RAM DASS PUBLIC SCHOOL</h1>
+            <h2>FEROZEPUR</h2>
+        </div>
+        <div style="width: 80px;"></div> 
+    </div>
+
+    <div class="container">
+        <h2 style="color: #333; margin-top: 0;">Merge Student Data & Photos</h2>
+        <form action="/merge" method="POST" enctype="multipart/form-data">
+            <div class="upload-box">
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">1. Upload Excel/CSV Data:</label>
+                <input type="file" name="csv_file" accept=".csv" required>
+            </div>
+            <div class="upload-box">
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">2. Upload Photos (.zip):</label>
+                <input type="file" name="zip_file" accept=".zip" required>
+            </div>
+            <button type="submit">Generate Final Excel File</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        Developed by <span>Harpreet Singh</span> &copy; 2026
+    </div>
+
+</body>
+</html>
